@@ -1,5 +1,4 @@
-//incomplete 
-   #include <iostream>
+#import <iostream>
 
      char board [3][3] ={ {'.', '.','.'},
                                          {'.', '.','.'},
@@ -12,13 +11,15 @@
     
     int main(){
         int player = 1;
-
+         print();
         while(true){
             int row, col;
-           std::cout<< "enter row: ";
-            std::cin>> row; 
-            std::cout<< "enter col: ";
-            std::cin>> col;
+           std::cout<< "enter col: ";
+            std::cin>> col; 
+            std::cout<< "enter row: ";
+            std::cin>> row;
+            row--; 
+            col--;
 
             if(isPossible(row,col)){
                 if(player%2== 1){ 
@@ -33,9 +34,10 @@
                if(checkWin()){
                    break;
                }
-              //  else if(!emptySpot()){
-              //      break;
-              //  }
+               else if(!emptySpot()){
+                   std::cout<<"game over!";
+                   return 0;
+               }
               print();
            }
           print();
@@ -53,10 +55,10 @@
     bool emptySpot(){//check if there are any empty spots left in the board
         for(int i=0; i<3; i++){ 
             for(int j=0; j<3; j++){
-                if(board[i][j] != '.') return false;
+                if(board[i][j] != '.') return true;
             }
         }
-        return true;
+        return false;
     }
 
     bool checkWin(){
@@ -69,6 +71,7 @@
      
         return false;
     }
+
 
     void print(){
         for(int i=0; i<3; i++){
